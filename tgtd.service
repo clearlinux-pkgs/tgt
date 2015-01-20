@@ -1,0 +1,19 @@
+[Unit]
+Description=tgtd iSCSI target daemon
+After=network.target
+
+[Service]
+Type=notify
+ExecStart=/usr/sbin/tgtd -f 
+ExecStartPost=/usr/sbin/tgtadm --op update --mode sys --name State -v offline
+ExecStartPost=/usr/sbin/tgt-admin -e 
+ExecStartPost=/usr/sbin/tgtadm --op update --mode sys --name State -v ready
+
+ExecReload=/usr/sbin/tgt-admin --update ALL 
+
+ExecStop=/usr/sbin/tgtadm --op update --mode sys --name State -v offline
+ExecStop=/usr/sbin/tgt-admin --update ALL -c /dev/null
+ExecStop=/usr/sbin/tgtadm --op delete --mode system
+
+[Install]
+WantedBy=multi-user.target

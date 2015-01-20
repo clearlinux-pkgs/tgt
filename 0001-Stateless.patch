@@ -1,0 +1,38 @@
+From 147b15ea789bc189f41c2fe203912a68e56230a3 Mon Sep 17 00:00:00 2001
+From: Alberto Murillo <alberto.murillo.silva@intel.com>
+Date: Wed, 1 Apr 2015 11:11:25 -0600
+Subject: [PATCH 1/2] Stateless
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way, Swindon SN3 1RJ
+
+Signed-off-by: Alberto Murillo <alberto.murillo.silva@intel.com>
+---
+ conf/Makefile     | 2 +-
+ scripts/tgt-admin | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/conf/Makefile b/conf/Makefile
+index bff222f..c2cc2ae 100644
+--- a/conf/Makefile
++++ b/conf/Makefile
+@@ -1,4 +1,4 @@
+-sysconfdir ?= /etc
++sysconfdir ?= /usr/share/defaults
+ 
+ EXAMPLES = targets.conf.example targets.conf.vtl.L700 targets.conf.vtl.MSL2024
+ 
+diff --git a/scripts/tgt-admin b/scripts/tgt-admin
+index 7130a3d..37224ae 100755
+--- a/scripts/tgt-admin
++++ b/scripts/tgt-admin
+@@ -11,7 +11,7 @@ use Config::General qw(ParseConfig);
+ use Getopt::Long;
+ 
+ # Our config file
+-my $configfile = "/etc/tgt/targets.conf";
++my $configfile = "/usr/share/defaults/tgt/targets.conf";
+ 
+ sub usage {
+ 	print <<EOF;
+-- 
+2.1.0
+

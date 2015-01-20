@@ -1,0 +1,29 @@
+From 1d7a70c93a6f9923fd7ceeeac438c439948490e1 Mon Sep 17 00:00:00 2001
+From: Alberto Murillo <alberto.murillo.silva@intel.com>
+Date: Wed, 1 Apr 2015 11:11:36 -0600
+Subject: [PATCH] Default config
+
+Signed-off-by: Alberto Murillo <alberto.murillo.silva@intel.com>
+---
+ conf/targets.conf | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/conf/targets.conf b/conf/targets.conf
+index 1bb4435..f6f67e8 100644
+--- a/conf/targets.conf
++++ b/conf/targets.conf
+@@ -1,5 +1,7 @@
+-# Empty targets configuration file -- please see the package
+-# documentation directory for an example.
+-#
+-# You can drop individual config snippets into /etc/tgt/conf.d
++# Stateless configuration for tgt
++
++# Integration location for other packages
++include /usr/share/defaults/tgt/conf.d/*.conf
++
++# Default Admin configuration locations
+ include /etc/tgt/conf.d/*.conf
+-- 
+2.1.0
+
