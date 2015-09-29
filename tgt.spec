@@ -4,7 +4,7 @@
 #
 Name     : tgt
 Version  : 1.0.60
-Release  : 20
+Release  : 21
 URL      : https://github.com/fujita/tgt/archive/v1.0.60.tar.gz
 Source0  : https://github.com/fujita/tgt/archive/v1.0.60.tar.gz
 Source1  : tgtd.service
