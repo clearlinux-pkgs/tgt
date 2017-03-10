@@ -1,0 +1,11 @@
+--- tgt-1.0.69/usr/Makefile~	2016-11-04 00:18:53.000000000 +0000
++++ tgt-1.0.69/usr/Makefile	2017-03-10 14:21:59.188432188 +0000
+@@ -45,7 +45,7 @@
+ else
+ CFLAGS += -g -O2 -fno-strict-aliasing
+ endif
+-CFLAGS += -Wall -Wstrict-prototypes -Werror -fPIC
++CFLAGS += -Wall -Wstrict-prototypes -fPIC
+ CFLAGS += -DTGT_VERSION=\"$(VERSION)$(EXTRAVERSION)\"
+ CFLAGS += -DBSDIR=\"$(DESTDIR)$(libdir)/backing-store\"
+ 
