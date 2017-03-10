@@ -4,7 +4,7 @@
 #
 Name     : tgt
 Version  : 1.0.69
-Release  : 30
+Release  : 31
 URL      : http://github.com/fujita/tgt/archive/v1.0.69.tar.gz
 Source0  : http://github.com/fujita/tgt/archive/v1.0.69.tar.gz
 Source1  : tgtd.service
@@ -13,11 +13,14 @@ Group    : Development/Tools
 License  : GPL-2.0
 Requires: tgt-bin
 Requires: tgt-config
+Requires: tgt-data
 Requires: tgt-doc
 BuildRequires : docbook-xml
 BuildRequires : libxslt-bin
 BuildRequires : systemd-dev
 Patch1: build.patch
+Patch2: 0001-Stateless.patch
+Patch3: 0002-Default-config.patch
 
 %description
 The SCSI target package contains the daemon and tools to setup a SCSI targets.
@@ -26,6 +29,7 @@ Currently, software iSCSI targets are supported.
 %package bin
 Summary: bin components for the tgt package.
 Group: Binaries
+Requires: tgt-data
 Requires: tgt-config
 
 %description bin
@@ -40,6 +44,14 @@ Group: Default
 config components for the tgt package.
 
 
+%package data
+Summary: data components for the tgt package.
+Group: Data
+
+%description data
+data components for the tgt package.
+
+
 %package doc
 Summary: doc components for the tgt package.
 Group: Documentation
@@ -51,14 +63,16 @@ doc components for the tgt package.
 %prep
 %setup -q -n tgt-1.0.69
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1489155786
+export SOURCE_DATE_EPOCH=1489155914
 make V=1  %{?_smp_mflags} SD_NOTIFY=1
 
 %install
-export SOURCE_DATE_EPOCH=1489155786
+export SOURCE_DATE_EPOCH=1489155914
 rm -rf %{buildroot}
 %make_install
 mkdir -p %{buildroot}/usr/lib/systemd/system
@@ -78,6 +92,13 @@ install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/tgtd.service
 %files config
 %defattr(-,root,root,-)
 /usr/lib/systemd/system/tgtd.service
+
+%files data
+%defattr(-,root,root,-)
+%exclude /usr/share/defaults/tgt/examples/targets.conf.example
+%exclude /usr/share/defaults/tgt/examples/targets.conf.vtl.L700
+%exclude /usr/share/defaults/tgt/examples/targets.conf.vtl.MSL2024
+/usr/share/defaults/tgt/targets.conf
 
 %files doc
 %defattr(-,root,root,-)
